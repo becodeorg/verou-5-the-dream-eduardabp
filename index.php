@@ -11,10 +11,10 @@
         <br>
         <h2>Do you want to check how many caipirinhas you can buy in Brazil with your VDAB allowance? Calculate it here!</h2>
         <br>
-        <form>
-            <label for="real-price">Value</label>
+        <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST">
+            <label for="real-price">Price in Real</label>
             <input type="number" name="real-price" id="real-price">
-            <button type="submit">Calculate</button>
+            <button>Calculate</button>
         </form>
     </main>    
 </body>
