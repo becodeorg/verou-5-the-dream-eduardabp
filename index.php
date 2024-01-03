@@ -12,14 +12,15 @@
         <br>
         <h2>Do you want to check how many caipirinhas you can buy in Brazil with your VDAB allowance? Or spending your grandma's Christmas gift on Pokécoins? Or perhaps go to Switzerland to feel poor? Calculate it here!</h2>
         <br>
+        <div class="form">
         <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST">
             <div class="currency-mode">
-                <p>Foreign Currency</p>
+                <p class="foreign">Foreign Currency</p>
                 <label class="switch">
                     <input type="checkbox" id="toggle" name="currency-mode" value="1">
                     <span class="slider round"></span>
                 </label>
-                <p>Euro</p>
+                <p class="euro">Euro</p>
             </div>
             <legend>Select your currency:</legend>
             <input type="radio" id="real" name="currency" value="Real">
@@ -33,6 +34,7 @@
             <input type="number" name="price" id="price">
             <button>Calculate</button>
         </form>
+</div>
         <?php 
             if($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $price = filter_input(INPUT_POST, "price");
