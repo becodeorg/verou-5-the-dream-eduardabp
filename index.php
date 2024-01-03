@@ -33,7 +33,30 @@
             <input type="number" name="price" id="price">
             <button>Calculate</button>
         </form>
-        
+        <?php 
+            if($_SERVER['REQUEST_METHOD'] == 'POST') {
+                $price = filter_input(INPUT_POST, "price");
+                $currency = filter_input(INPUT_POST, "currency");
+                if (!empty($price)) {
+                    if(!isset($_POST['currency-mode'])) {
+                        $result = match($currency) {
+                            "Real" => $price * 0.19,
+                            "Franc" => $price * 1.07,
+                            "Pokécoins" => $price * 0.01,
+                        };
+                        echo "<p>Price in Euros: €" . $result . "</p>";
+                    };
+                    if(isset($_POST['currency-mode'])) {
+                        $result = match($currency) {
+                            "Real" => $price * 5.38,
+                            "Franc" => $price * 0.93,
+                            "Pokécoins" => $price * 100,
+                        };
+                        echo "<p>Price in " . $currency . ": " . $result . "</p>";
+                    }
+                }
+            }
+        ?>
     </main>    
 </body>
 </html>
