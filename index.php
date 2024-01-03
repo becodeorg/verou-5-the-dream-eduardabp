@@ -16,6 +16,15 @@
             <input type="number" name="real-price" id="real-price">
             <button>Calculate</button>
         </form>
+        <?php 
+            if($_SERVER['REQUEST_METHOD'] == 'POST') {
+                $realPrice = filter_input(INPUT_POST, "real-price");
+                if (!empty($realPrice)) {
+                    $euroPrice = $realPrice * 0.19;
+                    echo "<p>Price in Euros: €" . $euroPrice . "</p>";
+                }
+            }
+        ?>
     </main>    
 </body>
 </html>
