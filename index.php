@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Real to Euro</title>
+    <title>Currency Calculator</title>
     <link href="style.css" rel="stylesheet">
 </head>
 <body>
     <main>
-        <h1>Real to Euro</h1>
+        <h1>Currency Calculator</h1>
         <br>
         <h2>Do you want to check how many caipirinhas you can buy in Brazil with your VDAB allowance? Or spending your grandma's Christmas gift on Pokécoins? Or perhaps go to Switzerland to feel poor? Calculate it here!</h2>
         <br>
