@@ -4,27 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Real to Euro</title>
+    <link href="style.css" rel="stylesheet">
 </head>
 <body>
     <main>
         <h1>Real to Euro</h1>
         <br>
-        <h2>Do you want to check how many caipirinhas you can buy in Brazil with your VDAB allowance? Calculate it here!</h2>
+        <h2>Do you want to check how many caipirinhas you can buy in Brazil with your VDAB allowance? Or spending your grandma's Christmas gift on Pokécoins? Or perhaps go to Switzerland to feel poor? Calculate it here!</h2>
         <br>
         <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST">
-            <label for="real-price">Price in Real</label>
-            <input type="number" name="real-price" id="real-price">
+            <div class="currency-mode">
+                <p>Foreign Currency</p>
+                <label class="switch">
+                    <input type="checkbox" id="toggle" name="currency-mode" value="1">
+                    <span class="slider round"></span>
+                </label>
+                <p>Euro</p>
+            </div>
+            <legend>Select your currency:</legend>
+            <input type="radio" id="real" name="currency" value="Real">
+            <label for="real">Real</label><br>
+            <input type="radio" id="franc" name="currency" value="Franc">
+            <label for="franc">Swiss Franc</label><br>
+            <input type="radio" id="pokecoins" name="currency" value="Pokécoins">
+            <label for="pokecoins">Pokécoins</label>
+            <br>
+            <label for="price">Price:</label>
+            <input type="number" name="price" id="price">
             <button>Calculate</button>
         </form>
-        <?php 
-            if($_SERVER['REQUEST_METHOD'] == 'POST') {
-                $realPrice = filter_input(INPUT_POST, "real-price");
-                if (!empty($realPrice)) {
-                    $euroPrice = $realPrice * 0.19;
-                    echo "<p>Price in Euros: €" . $euroPrice . "</p>";
-                }
-            }
-        ?>
+        
     </main>    
 </body>
 </html>
