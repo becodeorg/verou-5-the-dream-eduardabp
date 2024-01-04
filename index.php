@@ -1,3 +1,25 @@
+<?php 
+            if($_SERVER['REQUEST_METHOD'] == 'POST') {
+                $price = filter_input(INPUT_POST, "price");
+                $currency = filter_input(INPUT_POST, "currency");
+                if (!empty($price)) {
+                    if(!isset($_POST['currency-mode'])) {
+                        $money = "Euro";
+                        $result = match($currency) {
+                            "Real" => $price * 0.19,
+                            "Franc" => $price * 1.07,
+                            "Pokécoins" => $price * 0.01,
+                        };
+                    };
+                    if(isset($_POST['currency-mode'])) {
+                        $money = $currency;
+                        $result = match($currency) {
+                            "Real" => $price * 5.38,
+                            "Franc" => $price * 0.93,
+                            "Pokécoins" => $price * 100,
+                        };}}}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,32 +55,14 @@
             <label for="price">Price:</label>
             <input type="number" name="price" id="price">
             <button>Calculate</button>
+            <?php 
+                if (empty($price)) {
+                    echo "";
+                } else {
+                    echo "<p>Conversion price in " . $money .": " . $result . "</p>";
+                } 
+            ?>
         </form>
-</div>
-        <?php 
-            if($_SERVER['REQUEST_METHOD'] == 'POST') {
-                $price = filter_input(INPUT_POST, "price");
-                $currency = filter_input(INPUT_POST, "currency");
-                if (!empty($price)) {
-                    if(!isset($_POST['currency-mode'])) {
-                        $result = match($currency) {
-                            "Real" => $price * 0.19,
-                            "Franc" => $price * 1.07,
-                            "Pokécoins" => $price * 0.01,
-                        };
-                        echo "<p>Price in Euros: €" . $result . "</p>";
-                    };
-                    if(isset($_POST['currency-mode'])) {
-                        $result = match($currency) {
-                            "Real" => $price * 5.38,
-                            "Franc" => $price * 0.93,
-                            "Pokécoins" => $price * 100,
-                        };
-                        echo "<p>Price in " . $currency . ": " . $result . "</p>";
-                    }
-                }
-            }
-        ?>
     </main>    
 </body>
 </html>
